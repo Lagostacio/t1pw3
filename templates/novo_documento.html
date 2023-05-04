@@ -1,0 +1,17 @@
+{% extends "./inc/base.html" %}
+
+
+{% block conteudo %}
+
+<h1>Novo documentos</h1>
+
+<form action="#" method='POST' enctype='multipart/form-data'>
+    <div>
+        <input type="file" name='documento'>
+    </div>
+    <div>
+        <input type="submit" value="enviar documento">
+    </div>
+</form>
+
+{% endblock %}

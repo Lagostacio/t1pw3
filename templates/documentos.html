@@ -3,7 +3,33 @@
 
 {% block conteudo %}
 
-<h1>documentos</h1>
+<h1>seus documentos</h1>
 
+<table border='1'>
+<thead>
+    <tr>
+        <th>Documento</th>
+        <th>Ações</th>
+    </tr>
+</thead>
+
+<tbody>
+{% for documento in documentos %}
+    <tr>
+        <td>{{documento.nome}}</td>
+        <td>
+            <a href="compartilha_documento.php">compartilhar</a>
+            <a href="edita_documento.php">editar</a>
+            <a href="exclui_documento.php">excluir</a>
+        </td>
+
+    </tr>
+{% endfor %}
+</tbody>
+
+</table>
 <h2><a href="novo_documento.php">Adicionar documentos</a></h2>
+
+
+
 {% endblock %}

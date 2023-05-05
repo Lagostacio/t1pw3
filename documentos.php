@@ -1,12 +1,18 @@
 <?php
 
 require("twig_carregar.php");
+require('verifica_login.php');
 
-// $doc = new Documento();
-// $documentos = $doc->getAll();
+require("./models/Documento.php");
+
+$id_usuario = $id;
+
+$doc = new Documento();
+$documentos = $doc->getDocs($id_usuario);
 
 
 echo $twig->render("documentos.html",[
     "titulo"=>"Documentos",
-    "documentos"=>null
+    "documentos"=>$documentos,
+    //"documentos"=>null
 ]);

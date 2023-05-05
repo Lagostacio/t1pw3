@@ -1,5 +1,9 @@
 <h1>login</h1>
 
+{% if erro %}
+	<h1 style='color:red;'>{{erro}}</h1>
+{% endif %}
+
 <form action="#" method="post">
 	<div>
 		<label for="nome">Nome</label>

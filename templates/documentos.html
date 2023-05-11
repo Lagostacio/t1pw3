@@ -18,9 +18,25 @@
     <tr>
         <td>{{documento.nome}}</td>
         <td>
-            <a href="compartilha_documento.php">compartilhar</a>
-            <a href="edita_documento.php">editar</a>
-            <a href="exclui_documento.php">excluir</a>
+            <a href="compartilha_documento.php" 
+             >compartilhar</a>
+            <a href="edita_documento.php" 
+                {% if not documento.editar  %} 
+                    style="
+                    pointer-events: none;
+                    cursor: default;
+                    color: gray;"
+
+                {% endif %} > editar</a>
+                
+            <a href="exclui_documento.php" 
+                {% if not documento.excluir  %} 
+                    style="
+                    pointer-events: none;
+                    cursor: default;
+                    color: gray;"
+
+                {% endif %} >excluir</a>
         </td>
 
     </tr>

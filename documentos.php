@@ -11,6 +11,8 @@ $doc = new Documento();
 $documentos = $doc->getDocs($id_usuario);
 
 
+
+
 echo $twig->render("documentos.html",[
     "titulo"=>"Documentos",
     "documentos"=>$documentos,

@@ -12,8 +12,10 @@ if($_SERVER['REQUEST_METHOD']=='POST' && !$_FILES['documento']['error']){
     $doc = new Documento();
     $doc->inserir([$nome]);
     
-    $documento = $doc->getAll("WHERE nome = '{$nome}' ");
-    
+    $documento = $doc->getAll(['nome'=>$nome]);
+    $id_documento = $doc->getId();
+    var_dump($id_documento);die;
+
     $doc->liga_user_doc($id,$documento[0]['id']);
     move_uploaded_file($_FILES['documento']['tmp_name'],"./documentos/{$nome}");
 

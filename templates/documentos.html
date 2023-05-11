@@ -18,9 +18,9 @@
     <tr>
         <td>{{documento.nome}}</td>
         <td>
-            <a href="compartilha_documento.php" 
+            <a href="compartilha_documento.php?id={{documento.id}}" 
              >compartilhar</a>
-            <a href="edita_documento.php" 
+            <a href="edita_documento.php?id={{documento.id}}" 
                 {% if not documento.editar  %} 
                     style="
                     pointer-events: none;
@@ -29,7 +29,7 @@
 
                 {% endif %} > editar</a>
                 
-            <a href="exclui_documento.php" 
+            <a href="exclui_documento.php?id={{documento.id}}" 
                 {% if not documento.excluir  %} 
                     style="
                     pointer-events: none;

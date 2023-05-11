@@ -1,0 +1,17 @@
+{% extends "inc/base.html" %}
+
+
+{% block conteudo %}
+
+<h1>exclui documento</h1>
+<p>deseja apagar o arquivo <b>{{documento.nome}}</b>?</p>
+<div>
+
+<form action="#" method='post'>
+    <input type="hidden" name="id_doc" value='{{documento.id}}'>
+    <button type='submit'>sim</button>
+</form>
+
+<button><a href='documentos.php'>não</a></button>
+</div>
+{% endblock %}

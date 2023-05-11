@@ -18,7 +18,7 @@ create table documentos (
 
 create table usuarios_documentos (
     id_usuario int not null,
-    id_doc int not null,
+    id_documento int not null,
     editar tinyint not null,
     excluir tinyint not null,
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id),

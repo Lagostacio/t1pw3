@@ -2,4 +2,29 @@
 
 {% block conteudo %}
     <h1>Com quem deseja compartilhar "{{documento.nome}}"?</h1>
+
+    <table border='1'>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Premissão</th>
+            </tr>
+        </thead>
+        <tbody>
+        <form action="#" method='post'>
+        {% for usuario in usuarios %}
+            <tr>
+                <td><input type="checkbox" name="usuario{{usuario.id}}" id="">{{usuario.nome}}</td>
+                <td>{{usuario.email}}</td>
+                <td>
+                Editar <input type="checkbox" name="editar{{usuario.id}}" id="">
+                Excluir <input type="checkbox" name="excluir{{usuario.id}}" id="">
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <button type="submit">Compartilhar</button>
+        </form>
 {% endblock %}

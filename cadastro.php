@@ -1,6 +1,7 @@
 <?php
 
 require("twig_carregar.php");
+require("./models/Model.php");
 require("./models/Usuario.php");
 
 

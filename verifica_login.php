@@ -14,4 +14,4 @@ if(empty($_SESSION['nome']) && empty($_SESSION['senha'])){
 $nome = $_SESSION['nome'];
 $senha = $_SESSION['senha'];
 $email = $_SESSION['email'];
-$id = $_SESSION['id'];
+$id_usuario = $_SESSION['id'];

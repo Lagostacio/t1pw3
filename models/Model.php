@@ -24,38 +24,53 @@ class Model {
 
      public function inserir($dados){
         
-        $pdo = $this->conex;
-        $query = "INSERT INTO {$this->tabela} {$this->campos} VALUES {$this->prepare}";
-        $sql = $pdo->prepare($query);
+         $pdo = $this->conex;
+         $query = "INSERT INTO {$this->tabela}";
+         $campos = $this->campos_sql($dados);
+         $query .= " SET {$campos}";
+         $sql = $pdo->prepare($query);
         $sql->execute($dados);
-
-        //var_dump($dados);die;
      }
 
-     public function liga_user_doc($id_usuario,$id_doc,$editar=1,$excluir=1){
+     public function liga_user_doc($dados){
 
 
          $pdo = $this->conex;
-         $query = 'INSERT INTO usuarios_documentos (id_usuario,id_documento,editar,excluir) VALUES (?,?,?,?)';
+         $query = 'INSERT INTO usuarios_documentos';
+         $query .= " SET ".$this->campos_sql($dados);
          $sql = $pdo->prepare($query);
-         $sql->execute([$id_usuario,$id_doc,$editar,$excluir]);
+         $sql->execute($dados);
 
      }
 
-     public function getAll($condicao=false){
+     public function getAll($where=null,$cola = 'AND'){
          
          $pdo = $this->conex;
          $query = "SELECT * FROM {$this->tabela} ";
 
-         if($condicao)
-         $query .= "WHERE ".$this->campos_sql($condicao);
+         if($where){
+            $campos = $this->campos_sql($where);
+             $query .= "WHERE ".$this->cola_sql($campos,$cola);
+        }
 
          $sql = $pdo->prepare($query);
-         $sql->execute($condicao);
+         $sql->execute($where);
          $dados = $sql->fetchAll(PDO::FETCH_ASSOC);
 
          return $dados;
 
+     }
+
+     private function cola_sql($campos,$cola){
+        $cola = $cola == 'OR' ? ' OR ' : ' AND ';
+
+        $campos = explode(',',$campos);
+        $sql = array_shift($campos);
+
+        foreach($campos as $campo){
+            $sql .= $cola . $campo;
+        }
+        return $sql;
      }
 
      public function getById($id){
@@ -71,7 +86,7 @@ class Model {
          $pdo = $this->conex;
          $query = "SELECT MAX(id) FROM {$this->tabela}";
          $sql = $pdo->query($query);
-        $sql->fetch(PDO::FETCH_ASSOC);
+         return $sql->fetchColumn();
 
      }
 

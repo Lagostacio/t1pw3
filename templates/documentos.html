@@ -21,13 +21,10 @@
             <a href="compartilha_documento.php?id={{documento.id}}" 
              >compartilhar</a>
             <a href="edita_documento.php?id={{documento.id}}" 
-                {% if not documento.editar  %} 
                     style="
                     pointer-events: none;
                     cursor: default;
-                    color: gray;"
-
-                {% endif %} > editar</a>
+                    color: gray;"> editar</a>
                 
             <a href="exclui_documento.php?id={{documento.id}}" 
                 {% if not documento.excluir  %} 

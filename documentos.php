@@ -5,7 +5,6 @@ require('verifica_login.php');
 
 require("./models/Documento.php");
 
-$id_usuario = $id;
 
 $doc = new Documento();
 $documentos = $doc->getDocs($id_usuario);

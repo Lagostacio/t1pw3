@@ -16,7 +16,10 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
     if($nome && $senha){
 
         $usuario = new Usuario();
-        $usuario = $usuario->getAll("WHERE nome = '{$nome}' and senha = '{$senha}' ");
+        $usuario = $usuario->getAll([
+            "nome"=>$nome,
+            "senha"=>$senha
+        ]);
 
         if($usuario){
             session_start();   

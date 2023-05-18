@@ -1,20 +1,33 @@
-<h1>login</h1>
+{% extends "inc/base.html" %}
+
+{% block conteudo %}
+
+
+<div class='container px-auto py-24 text-center text-lg'>
 
 {% if erro %}
-	<h1 style='color:red;'>{{erro}}</h1>
+    <div class='text-red-500 font-bold text-xl'>{{erro}}</div>
 {% endif %}
 
-<form action="#" method="post">
-	<div>
+<form action="#" method="post" class='mx-auto my-10'>
+	<div class='my-2'>
 		<label for="nome">Nome</label>
-		<input type="text" name='nome' id='nome'>
+		<input type="text" name='nome' id='nome' class='text-indigo-700 rounded-md bg-purple-200'>
 	</div>
-	<div>
+	<div class='my-2'>
 		<label for="senha">Senha:</label>
-		<input type="password" name='senha' id='senha'>
+		<input type="password" name='senha' id='senha' class='text-indigo-700 rounded-md bg-purple-200'>
 	</div>
-    <input type="submit" value="Logar">
+	<button class="rounded-lg border border-violet-500 bg-violet-500 px-5 py-2.5 text-center text-sm font-medium text-fuchsia-100 shadow-sm transition-all hover:border-violet-700 hover:bg-violet-700 focus:ring focus:ring-violet-200 disabled:cursor-not-allowed disabled:border-violet-300 disabled:bg-violet-300">
+		<input type="submit" value="Logar">
+	</button>
 </form>
 
 <h2>ainda não se cadastrou?</h2>
-<h3><a href="cadastro.php">cadastro</a></h3>
+<h3>
+<button class="rounded-lg border border-violet-500 bg-violet-500 px-5 py-2.5 text-center text-sm font-medium text-fuchsia-100 shadow-sm transition-all hover:border-violet-700 hover:bg-violet-700 focus:ring focus:ring-violet-200 disabled:cursor-not-allowed disabled:border-violet-300 disabled:bg-violet-300">
+	<a href="cadastro.php">cadastro</a>
+</button></h3>
+
+</div>
+{% endblock %}

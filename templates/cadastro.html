@@ -1,10 +1,51 @@
-<h1>Cadastro</h1>
+{% extends "inc/base.html" %}
 
-<form action="#" method='post'>
-    Nome:<input type="text" name='nome'>
-    Email: <input type="email" name="email">
-    Senha: <input type="password" name="senha">
-    <input type="submit" value="Cadastrar">
+
+{% block conteudo %}
+
+
+<div class='container px-auto py-24 text-center text-lg'>
+<form action="#" method='post' class='mx-auto my-10'>
+    <div class='my-2'>
+        <label for="nome">Nome</label>
+        <input type="text" name='nome' id='nome' class='text-indigo-700 rounded-md bg-purple-200'>
+    </div>
+    <div class='my-2'>
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" class='text-indigo-700 rounded-md bg-purple-200'>
+    <div class='my-2'>
+        <label for="senha">Senha:</label>
+        <input type="password" name="senha" id="senha" class='text-indigo-700 rounded-md bg-purple-200'>
+    </div>
+    <button class="rounded-lg border border-violet-500 bg-violet-500 px-5 py-2.5 text-center text-sm font-medium text-fuchsia-100 shadow-sm transition-all hover:border-violet-700 hover:bg-violet-700 focus:ring focus:ring-violet-200 disabled:cursor-not-allowed disabled:border-violet-300 disabled:bg-violet-300">
+        <input type="submit" value="Cadastrar">
+    </button>
 </form>
 
-<h2><a href="login.html">voltar</a></h2>
+<h2><a href="login.php">voltar</a></h2>
+{% endblock %}
+
+{# 
+<div class='container px-auto py-24 text-center text-lg'>
+
+    <form action="#" method="post" class='mx-auto my-10'>
+        <div class='my-2'>
+            <label for="nome">Nome</label>
+            <input type="text" name='nome' id='nome' class='text-indigo-700 rounded-md bg-purple-200'>
+        </div>
+        <div class='my-2'>
+            <label for="senha">Senha:</label>
+            <input type="password" name='senha' id='senha' class='text-indigo-700 rounded-md bg-purple-200'>
+        </div>
+        <button class="rounded-lg border border-violet-500 bg-violet-500 px-5 py-2.5 text-center text-sm font-medium text-fuchsia-100 shadow-sm transition-all hover:border-violet-700 hover:bg-violet-700 focus:ring focus:ring-violet-200 disabled:cursor-not-allowed disabled:border-violet-300 disabled:bg-violet-300">
+            <input type="submit" value="Logar">
+        </button>
+    </form>
+    
+    <h2>ainda não se cadastrou?</h2>
+    <h3>
+    <button class="rounded-lg border border-violet-500 bg-violet-500 px-5 py-2.5 text-center text-sm font-medium text-fuchsia-100 shadow-sm transition-all hover:border-violet-700 hover:bg-violet-700 focus:ring focus:ring-violet-200 disabled:cursor-not-allowed disabled:border-violet-300 disabled:bg-violet-300">
+        <a href="cadastro.php">cadastro</a>
+    </button></h3>
+    
+    </div> #}

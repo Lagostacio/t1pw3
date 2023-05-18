@@ -40,8 +40,9 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
 }
 
 $erro = $erro==403 ? 'Tu não tens autorização pra entrar aí, piá!' : $erro;
-$erro = $erro==400 ? 'Bad request' : $erro;
+$erro = $erro==400 ? 'Login inválido' : $erro;
 
 echo $twig->render('login.html',[
-    "erro"=>$erro
+    "erro"=>$erro,
+    "titulo"=>"Login"
 ]);

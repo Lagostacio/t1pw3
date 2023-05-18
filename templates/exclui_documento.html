@@ -1,17 +1,26 @@
 {% extends "inc/base.html" %}
 
 
+
+{% block nav %}
+    {% include "inc/nav.html" %}
+{% endblock %}
+
 {% block conteudo %}
+<div class="container text-center">
 
-<h1>exclui documento</h1>
-<p>deseja apagar o arquivo <b>{{documento.nome}}</b>?</p>
-<div>
+    <p>deseja apagar o arquivo <b>{{documento.nome}}</b>?</p>
 
-<form action="#" method='post'>
-    <input type="hidden" name="id_doc" value='{{documento.id}}'>
-    <button type='submit'>sim</button>
-</form>
+    <div class='flex justify-between'>
+        <form action="#" method='post'>
+            <input type="hidden" name="id_doc" value='{{documento.id}}'>
+            <button type='submit' class="rounded-lg border border-green-500 bg-green-500 px-5 py-2.5 text-center text-sm font-medium text-white shadow-sm transition-all hover:border-green-700 hover:bg-green-700 focus:ring focus:ring-green-200 disabled:cursor-not-allowed disabled:border-green-300 disabled:bg-green-300">
+                sim
+            </button>
+        </form>
+        
+        <button class="rounded-lg border border-red-500 bg-red-500 px-5 py-2.5 text-center text-sm font-medium text-white shadow-sm transition-all hover:border-red-700 hover:bg-red-700 focus:ring focus:ring-red-200 disabled:cursor-not-allowed disabled:border-red-300 disabled:bg-red-300"><a href='documentos.php'>não</a></button>
+     </div>
 
-<button><a href='documentos.php'>não</a></button>
 </div>
 {% endblock %}

@@ -11,11 +11,13 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     $nome = $_POST['nome'];
     $email = $_POST['email'];
     $senha = $_POST['senha'];
-
-    $dados = [$nome,$email,$senha];
     
     $usuario = new Usuario();
-    $usuario->inserir($dados);
+    $usuario->inserir([
+        "nome"=>$nome,
+        "email"=>$email,
+        "senha"=>$senha
+    ]);
 
     header("location:login.php");
     die;
@@ -24,4 +26,4 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 
 
 
-echo $twig->render('cadastro.html',[]);
+echo $twig->render('cadastro.html',["titulo"=>"Cadastro"]);

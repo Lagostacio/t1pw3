@@ -4,14 +4,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>{{titulo}}</title>
+    <style>
+        .desabilitado{
+            pointer-events: none;
+            cursor: default;
+        }
+    </style>
 </head>
-<body>
-    {% include "inc/nav.html" %}
+<body class='bg-indigo-900 text-purple-200'>
 
-    {% block conteudo %}
+    
+    {% block nav %}{% endblock %}
+    
+    <div class="container mx-auto bg-indigo-600 h-screen ">
+        <div id="titulo" class='w-full font-bold text-5xl text-white text-center'>{{titulo}}</div>
+    {% block conteudo %}    
+
     {% endblock %}
-
-
+    </div>
+    
 </body>
 </html>

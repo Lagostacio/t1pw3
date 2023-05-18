@@ -1,30 +1,42 @@
 {% extends "inc/base.html" %}
 
-{% block conteudo %}
-    <h1>Com quem deseja compartilhar "{{documento.nome}}"?</h1>
 
-    <table border='1'>
-        <thead>
+
+
+{% block nav %}
+{% include "inc/nav.html" %}
+{% endblock %}
+
+{% block conteudo %}
+
+    <div class="text-center my-3 text-xl">Com quem deseja compartilhar "{{documento.nome}}"?</div>
+
+    <table class='w-3/4 mx-auto border-collapse border border-slate-900  text-left text-lg text-indigo-950'>
+        <thead class="bg-indigo-400">
             <tr>
-                <th>Nome</th>
-                <th>Email</th>
-                <th>Premissão</th>
+                <th class='px-6 py-4 font-medium text-gray-900'>Nome</th>
+                <th class='px-6 py-4 font-medium text-gray-900'>Email</th>
+                <th class='px-6 py-4 font-medium text-gray-900'>Premissão</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class='divide-y divide-gray-900 border-t  bg-indigo-300'>
         <form action="#" method='post'>
         {% for usuario in usuarios %}
             <tr>
-                <td><input type="checkbox" name="usuario{{usuario.id}}" id="">{{usuario.nome}}</td>
-                <td>{{usuario.email}}</td>
-                <td>
-                Editar <input type="checkbox" name="editar{{usuario.id}}" id="">
-                Excluir <input type="checkbox" name="excluir{{usuario.id}}" id="">
+                <td class="px-6 py-4"><input type="checkbox" name="usuario{{usuario.id}}" id="">{{usuario.nome}}</td>
+                <td class="px-6 py-4">{{usuario.email}}</td>
+                <td class="px-6 py-4">
+                Editar 
+                {# <input type="checkbox" name="editar{{usuario.id}}" id=""> #}
+                e Excluir <input type="checkbox" name="editar_excluir{{usuario.id}}" id="">
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-    <button type="submit">Compartilhar</button>
+    <div class="text-center">
+        <button type="submit"class=" rounded-lg border border-violet-500 bg-violet-500 px-5 py-2.5 text-center text-sm font-medium text-fuchsia-100 shadow-sm transition-all hover:border-violet-700 hover:bg-violet-700 focus:ring focus:ring-violet-200 disabled:cursor-not-allowed disabled:border-violet-300 disabled:bg-violet-300">
+            Compartilhar</button>
+    </div>
         </form>
 {% endblock %}

@@ -43,13 +43,13 @@ class Model {
 
      }
 
-     public function getAll($where=null,$cola = 'AND'){
+     public function getAll($where = null,$operador = '=',$cola = 'AND'){
          
          $pdo = $this->conex;
          $query = "SELECT * FROM {$this->tabela} ";
 
          if($where){
-            $campos = $this->campos_sql($where);
+            $campos = $this->campos_sql($where,$operador);
              $query .= "WHERE ".$this->cola_sql($campos,$cola);
         }
 
@@ -61,7 +61,7 @@ class Model {
 
      }
 
-     private function cola_sql($campos,$cola){
+     private function cola_sql($campos,$cola = " AND "){
         $cola = $cola == 'OR' ? ' OR ' : ' AND ';
 
         $campos = explode(',',$campos);
@@ -90,12 +90,27 @@ class Model {
 
      }
 
-     public function getDocs($id){
+     public function getDocs($id,$where=null){
         
          $pdo = $this->conex;
-         $query = "SELECT * FROM `usuarios_documentos` INNER JOIN documentos on id_documento = documentos.id WHERE id_usuario = ?";
+         $query = "SELECT * FROM `usuarios_documentos` INNER JOIN documentos on id_documento = documentos.id WHERE id_usuario = :id AND ";
+         if($where){
+
+            $campos = $this->campos_sql($where," LIKE ");
+
+            foreach($where as $i=>$campo){
+                $where[$i] = $campo .= "%";
+            }
+
+            $query .= $this->cola_sql($campos);
+        }
+        $execute = [];
+        foreach($where as $chave=>$campo){
+            $execute[$this->tiraPontoNome($chave)] = $where[$chave];
+        }
+
          $sql = $pdo->prepare($query);
-         $sql->execute([$id]);
+         $sql->execute(["id"=>$id]+$execute);
          $dados = $sql->fetchAll(PDO::FETCH_ASSOC);
 
          return $dados;
@@ -116,22 +131,35 @@ class Model {
          return;
      }
      
-     private function mapeia_campos($dados){
+     private function mapeia_campos($dados,$operador = " = "){
         $campos = [];
+        $operador = $operador == '!=' ? ' != ' : $operador;
         foreach(array_keys($dados) as $campo){
-             array_push($campos,"{$campo} = :{$campo}");
+            
+            $campoJunto = $this->tiraPontoNome($campo);
+
+             array_push($campos,"{$campo} {$operador} :{$campoJunto}");
         } 
 
         return $campos;
      }
         
 
-        private function campos_sql($dados){
-           $camposSeparados = $this->mapeia_campos($dados);
+        private function campos_sql($dados,$operador = '='){
+           $camposSeparados = $this->mapeia_campos($dados,$operador);
            $campos = implode(' , ', $camposSeparados);
 
            return $campos;
        }
 
 
+
+       private function tiraPontoNome($nome){
+            $nomeSeparado = explode(".",$nome);
+            if(count($nomeSeparado)>1){
+                return implode('_',$nomeSeparado);
+            }else{
+                return $nome;
+            }
+       }
     };

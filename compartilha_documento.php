@@ -16,31 +16,30 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     
     var_dump($_POST);
     echo "<br>";
-    $v= [];
+    $usuarios= [];
+    $pv = '';
     foreach(array_keys($_POST) as $post){
-        array_push($v,substr($post,-1));
+        $chave =substr($post,-1);
+        $usuarios[$chave]['permissao'] = $pv == $chave ? 1 : 0;
+        $pv = $chave;
+        
     }
 
-    $teste = array_reduce($v,function($carry,$item){
-        $teste = empty($teste) ? [] : $teste;
+    foreach($usuarios as $id => $usuario){
+        $p = $usuario['permissao'];
         
-        echo "carry:".$carry."item:".$item."  ";
-        $teste2 = $carry != $item ? ["{$item}"=>["permissao"=>0]] : ["{$item}"=>["permissao"=>1]] ;
-        var_dump ($teste2);
-        echo "<br>";
-        array_push($teste,$teste2);
-        return $carry = $item;
-    },0);
+        $Usr_doc->inserir([
+            "id_usuario"=>$id,
+            "id_documento"=>$id_documento,
+            "editar"=>$p,
+            "excluir"=>$p
+            
+        ]);
+    }
 
-    var_dump($teste);
+    header("location:documentos.php");
     die;
-    $Usr_doc->inserir([
-        "id_usuario"=>$id_usuario,
-        "id_documento"=>$id_documento,
-        "editar"=>$editar,
-        "excluir"=>$excluir
-        
-    ]);
+
 }
 
 
@@ -48,7 +47,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 
 $documento = $Documento->getById($id_documento);
 
-$usuarios = $Usuario->getAll();
+$usuarios = $Usuario->getAll(["id"=>$id_usuario],"!=");
 
 
 

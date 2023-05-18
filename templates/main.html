@@ -2,14 +2,21 @@
 {% extends "./inc/base.html" %}
 
 
+
+{% block nav %}
+{% include "inc/nav.html" %}
+{% endblock %}
+
 {% block conteudo %}
 
-<h1>parabéns {{nome}} !! você está logado 😱😱😱😏😏💣</h1>
 
-<h6>sua senha: {{senha}} </h6>
-<h6>seu email: {{email}} </h6>
+<div class="text-center font-bold text-2xl text-white-100 my-20">parabéns {{nome}} !! você está logado 😱😱😱😏😏💣</div>
 
 
-<h2> <a href="documentos.php">Ver documentos</a></h2>
+<div class="text-center">
+    <button type="button" class="rounded-lg border border-violet-500 bg-violet-500 px-5 py-2.5 text-center text-sm font-medium text-fuchsia-100 shadow-sm transition-all hover:border-violet-700 hover:bg-violet-700 focus:ring focus:ring-violet-200 disabled:cursor-not-allowed disabled:border-violet-300 disabled:bg-violet-300">
+    <a href="documentos.php">Ver documentos</a> 
+    </button>
+</div>
 
 {% endblock %}

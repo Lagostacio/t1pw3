@@ -13,7 +13,8 @@ create table usuarios (
 
 create table documentos (
     id int auto_increment primary key not null,
-    nome varchar(250) not null
+    nome varchar(250) not null,
+    data_upload date not null
 );
 
 create table usuarios_documentos (
@@ -22,5 +23,5 @@ create table usuarios_documentos (
     editar tinyint not null,
     excluir tinyint not null,
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id),
-    FOREIGN KEY (id_doc) REFERENCES documentos(id)
+    FOREIGN KEY (id_documento) REFERENCES documentos(id)
 );

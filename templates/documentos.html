@@ -1,39 +1,50 @@
 {% extends "./inc/base.html" %}
 
 
+
+{% block nav %}
+    {% include "inc/nav.html" %}
+{% endblock %}
 {% block conteudo %}
 
-<h1>seus documentos</h1>
+<div class=' px-3 text-left text-lg'>
+    <span class='font-bold text-xl'> buscar documentos </span> 
+<form action="#" method="GET" >
+    <div>
 
-<table border='1'>
-<thead>
+        Nome: <input type="text" name="nome" id="" value='{{nome}}' class='text-indigo-700 rounded-md bg-purple-200'>
+    </div>
+    <div>
+        
+        Data de envio: <input type="date" name="data" id="" value="{{data}}" class='text-indigo-700 rounded-md bg-purple-200'>
+    </div>
+    <button type="button" class="rounded-lg border border-violet-500 bg-violet-500 px-5 py-2.5 text-center text-sm font-medium text-fuchsia-100 shadow-sm transition-all hover:border-violet-700 hover:bg-violet-700 focus:ring focus:ring-violet-200 disabled:cursor-not-allowed disabled:border-violet-300 disabled:bg-violet-300">
+     <input type="submit" value="Buscar"></button>
+</form>
+</div>
+
+<table class='w-3/4 mx-auto border-collapse border border-slate-900  text-left text-lg text-indigo-950'>
+<thead class="bg-indigo-400">
     <tr>
-        <th>Documento</th>
-        <th>Ações</th>
+        <th class='px-6 py-4 font-medium text-gray-900'>Documento</th>
+        <th class='px-6 py-4 font-medium text-gray-900'>Data de envio</th>
+        <th class='px-6 py-4 font-medium text-gray-900 text-center'>Ações</th>
     </tr>
 </thead>
 
-<tbody>
+<tbody class='divide-y divide-gray-900 border-t  bg-indigo-300'>
 {% for documento in documentos %}
     <tr>
-        <td>{{documento.nome}}</td>
-        <td>
-            <a href="compartilha_documento.php?id={{documento.id}}" 
-             >compartilhar</a>
-            <a href="edita_documento.php?id={{documento.id}}" 
-                    style="
-                    pointer-events: none;
-                    cursor: default;
-                    color: gray;"> editar</a>
-                
-            <a href="exclui_documento.php?id={{documento.id}}" 
-                {% if not documento.excluir  %} 
-                    style="
-                    pointer-events: none;
-                    cursor: default;
-                    color: gray;"
-
-                {% endif %} >excluir</a>
+        <td class='px-6 py-4 font-medium text-gray-900'><a href="download.php?documento={{documento.nome}}">{{documento.nome}}</a></td>
+        <td class="px-6 py-4">{{documento.data_upload}}</td>
+        <td class="px-6 py-4 text-center">
+            
+        <button type="button" class="rounded-lg border border-violet-500 bg-violet-500 px-5 py-2.5 text-center text-sm font-medium text-fuchsia-100 shadow-sm transition-all hover:border-violet-700 hover:bg-violet-700 focus:ring focus:ring-violet-200 disabled:cursor-not-allowed disabled:border-violet-300 disabled:bg-violet-300">
+            <a href="compartilha_documento.php?id={{documento.id}}" {% if not documento.excluir  %}class="desabilitado"{% endif %} >compartilhar</a></button>
+        <button type="button" class="rounded-lg border border-violet-500 bg-violet-500 px-5 py-2.5 text-center text-sm font-medium  shadow-sm transition-all hover:border-violet-700 hover:bg-violet-700 focus:ring focus:ring-violet-200 disabled:cursor-not-allowed disabled:border-violet-300 disabled:bg-violet-300">
+            <a href="edita_documento.php?id={{documento.id}}" class="desabilitado text-purple-300"> editar</a></button>
+        <button type="button" class="rounded-lg border border-violet-500 bg-violet-500 px-5 py-2.5 text-center text-sm font-medium text-fuchsia-100 shadow-sm transition-all hover:border-violet-700 hover:bg-violet-700 focus:ring focus:ring-violet-200 disabled:cursor-not-allowed disabled:border-violet-300 disabled:bg-violet-300">
+            <a href="exclui_documento.php?id={{documento.id}}" {% if not documento.excluir  %}class="desabilitado"{% endif %} >excluir</a></button>
         </td>
 
     </tr>
@@ -41,7 +52,11 @@
 </tbody>
 
 </table>
-<h2><a href="novo_documento.php">Adicionar documentos</a></h2>
+<div class="text-center">
+    <button type="button" class="rounded-lg border border-violet-500 bg-violet-500 px-5 py-2.5 text-center text-sm font-medium text-fuchsia-100 shadow-sm transition-all hover:border-violet-700 hover:bg-violet-700 focus:ring focus:ring-violet-200 disabled:cursor-not-allowed disabled:border-violet-300 disabled:bg-violet-300">
+    <a href="novo_documento.php">Adicionar documentos</a></button>
+
+</div>
 
 
 

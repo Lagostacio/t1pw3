@@ -1,16 +1,26 @@
 {% extends "./inc/base.html" %}
 
 
+{% block nav %}
+    {% include "inc/nav.html" %}
+{% endblock %}
+
 {% block conteudo %}
 
-<h1>Novo documentos</h1>
+{% if erro %}
+    <div class='text-red-500 font-bold text-xl'>{{erro}}</div>
+{% endif %}
 
 <form action="#" method='POST' enctype='multipart/form-data'>
     <div>
-        <input type="file" name='documento'>
+        
+        <input type="file" name='documento' class="block w-full text-sm file:mr-4 file:rounded-md file:border-violet-500 file:bg-violet-500 file:py-2.5 file:px-4 file:text-sm file:font-semibold file:text-white hover:file:bg-primary-700 focus:outline-none disabled:pointer-events-none disabled:opacity-60" >
     </div>
     <div>
-        <input type="submit" value="enviar documento">
+        <button type="button" class="rounded-lg border border-violet-500 bg-violet-500 px-5 py-2.5 text-center text-sm font-medium text-fuchsia-100 shadow-sm transition-all hover:border-violet-700 hover:bg-violet-700 focus:ring focus:ring-violet-200 disabled:cursor-not-allowed disabled:border-violet-300 disabled:bg-violet-300">
+            <input type="submit" value="enviar documento">
+        </button>
+
     </div>
 </form>
 
